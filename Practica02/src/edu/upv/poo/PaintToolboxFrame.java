@@ -4,30 +4,51 @@
  * and open the template in the editor.
  */
 package edu.upv.poo;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  * Este frame represente el menu de seleccion de herramientas
+ *
  * @author nahum
  */
-public class PaintToolboxFrame extends javax.swing.JFrame {
+public class PaintToolboxFrame extends javax.swing.JFrame implements ToolsListener {
+
     private final ArrayList<ToolsListener> toolsListeners = new ArrayList<>();
+    
+    private final PaintPanel paintPanel = new PaintPanel();
+
     /**
      * Creates new form PaintToolboxFrame2
      */
     public PaintToolboxFrame() {
         initComponents();
+        
+
+        paintPanel.setSize(mainPanel.getWidth(), mainPanel.getHeight());
+        paintPanel.setLocation(0,0);
+        mainPanel.add(paintPanel, BorderLayout.CENTER);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+        
     }
     
+    public PaintPanel getPaintPanel() { return paintPanel; }
+    
+    public ToolsListener getToolsListener() {
+        return paintPanel.getToolsListener();
+    }
+ 
     public void addToolsListener(ToolsListener l) {
         if (l != null) {
             toolsListeners.add(l);
         }
     }
-     public void removeToolsListeners(ToolsListener l) {
+
+    public void removeToolsListeners(ToolsListener l) {
         if (l != null) {
             toolsListeners.remove(l);
         }
@@ -53,6 +74,7 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
             l.modoChanged(e);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +95,18 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
         btnRectangulo = new javax.swing.JButton();
         btnCirculo = new javax.swing.JButton();
         btnRecta = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        mainPanel = new javax.swing.JPanel();
+        btnColorCyan = new javax.swing.JButton();
+        btnColorDarkGrey = new javax.swing.JButton();
+        btnColorWhite = new javax.swing.JButton();
+        btnColorGray = new javax.swing.JButton();
+        btnColorPink = new javax.swing.JButton();
+        btnColorOrange = new javax.swing.JButton();
+        btnColorYellow = new javax.swing.JButton();
+        btnColorGreen = new javax.swing.JButton();
+        btnColorMagenta = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -83,14 +117,14 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
         lblSize.setText("Tamaño actual del trazo: 20");
         lblSize.setToolTipText("");
 
-        btnColorAzul.setText("Azul");
+        btnColorAzul.setBackground(new java.awt.Color(0, 0, 204));
         btnColorAzul.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnColorAzulActionPerformed(evt);
             }
         });
 
-        btnColorRojo.setText("Rojo");
+        btnColorRojo.setBackground(new java.awt.Color(255, 0, 0));
         btnColorRojo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnColorRojoActionPerformed(evt);
@@ -99,7 +133,7 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
 
         lblTool.setText("Herramientas: Lapiz");
 
-        btnColorNegro.setText("Negro");
+        btnColorNegro.setBackground(new java.awt.Color(0, 0, 0));
         btnColorNegro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnColorNegroActionPerformed(evt);
@@ -142,93 +176,228 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 597, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 381, Short.MAX_VALUE)
+        );
+
+        btnColorCyan.setBackground(java.awt.Color.cyan);
+        btnColorCyan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorCyanActionPerformed(evt);
+            }
+        });
+
+        btnColorDarkGrey.setBackground(java.awt.Color.darkGray);
+        btnColorDarkGrey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorDarkGreyActionPerformed(evt);
+            }
+        });
+
+        btnColorWhite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorWhiteActionPerformed(evt);
+            }
+        });
+
+        btnColorGray.setBackground(java.awt.Color.gray);
+        btnColorGray.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorGrayActionPerformed(evt);
+            }
+        });
+
+        btnColorPink.setBackground(java.awt.Color.pink);
+        btnColorPink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorPinkActionPerformed(evt);
+            }
+        });
+
+        btnColorOrange.setBackground(java.awt.Color.orange);
+        btnColorOrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorOrangeActionPerformed(evt);
+            }
+        });
+
+        btnColorYellow.setBackground(java.awt.Color.yellow);
+        btnColorYellow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorYellowActionPerformed(evt);
+            }
+        });
+
+        btnColorGreen.setBackground(java.awt.Color.green);
+        btnColorGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorGreenActionPerformed(evt);
+            }
+        });
+
+        btnColorMagenta.setBackground(java.awt.Color.magenta);
+        btnColorMagenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColorMagentaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSliCambiarTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblSize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator2)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCcolor)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnColorPink, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorMagenta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorAzul, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnColorRojo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorCyan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorWhite, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorGray, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnColorYellow, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorOrange, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnColorDarkGrey, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnColorNegro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(btnRectangulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLibre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnCirculo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                    .addComponent(btnRecta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnColorNegro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                .addComponent(btnColorAzul, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelCcolor, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblTool, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnColorRojo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnCirculo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRecta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblTool))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSliCambiarTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(lblSize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelCcolor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSliCambiarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTool)
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnLibre)
+                                    .addComponent(btnCirculo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRectangulo)
+                                    .addComponent(btnRecta))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelCcolor)
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnColorPink, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnColorMagenta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnColorOrange, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorAzul, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorGreen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorYellow, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnColorGray, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnColorNegro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnColorDarkGrey, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorWhite, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorCyan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnColorRojo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnColorNegro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnColorAzul)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnColorRojo)
-                .addGap(22, 22, 22)
-                .addComponent(lblTool)
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLibre)
-                    .addComponent(btnCirculo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRectangulo)
-                    .addComponent(btnRecta))
-                .addGap(22, 22, 22)
-                .addComponent(lblSize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSliCambiarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+
     private void btnColorAzulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorAzulActionPerformed
         notifyColorChanged(Color.BLUE, "Azul");
     }//GEN-LAST:event_btnColorAzulActionPerformed
 
     private void btnColorRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorRojoActionPerformed
-       notifyColorChanged(Color.RED, "Rojo");
+        notifyColorChanged(Color.RED, "Rojo");
     }//GEN-LAST:event_btnColorRojoActionPerformed
 
     private void btnColorNegroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorNegroActionPerformed
-         notifyColorChanged(Color.BLACK, "Negro");
+        notifyColorChanged(Color.BLACK, "Negro");
     }//GEN-LAST:event_btnColorNegroActionPerformed
 
     private void jSliCambiarTextoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliCambiarTextoStateChanged
         try {
-                int sizeTrazo = jSliCambiarTexto.getValue();
-                System.out.println("Trazo: " + sizeTrazo);
-                notifyTrazoChanged(sizeTrazo);
-                lblSize.setText("Tamaño actual del trazo: " + sizeTrazo);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "El valor del tamaño del trazo debe ser numerico y entero.");
-            }
-        
-        
-        
+            int sizeTrazo = jSliCambiarTexto.getValue();
+            System.out.println("Trazo: " + sizeTrazo);
+            notifyTrazoChanged(sizeTrazo);
+            lblSize.setText("Tamaño actual del trazo: " + sizeTrazo);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El valor del tamaño del trazo debe ser numerico y entero.");
+        }
+
+
     }//GEN-LAST:event_jSliCambiarTextoStateChanged
 
     private void btnCirculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCirculoActionPerformed
-       notifyModoChanged(3);
-       lblTool.setText("Herramienta: Circulo");
+        notifyModoChanged(3);
+        lblTool.setText("Herramienta: Circulo");
     }//GEN-LAST:event_btnCirculoActionPerformed
 
     private void btnRectaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRectaActionPerformed
@@ -245,6 +414,42 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
         notifyModoChanged(1);
         lblTool.setText("Herramienta: Lapiz");
     }//GEN-LAST:event_btnLibreActionPerformed
+
+    private void btnColorCyanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorCyanActionPerformed
+        notifyColorChanged(Color.CYAN, "Cyan");
+    }//GEN-LAST:event_btnColorCyanActionPerformed
+
+    private void btnColorDarkGreyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorDarkGreyActionPerformed
+        notifyColorChanged(Color.DARK_GRAY, "Gris oscuro");
+    }//GEN-LAST:event_btnColorDarkGreyActionPerformed
+
+    private void btnColorWhiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorWhiteActionPerformed
+        notifyColorChanged(Color.WHITE, "Blanco");
+    }//GEN-LAST:event_btnColorWhiteActionPerformed
+
+    private void btnColorGrayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorGrayActionPerformed
+        notifyColorChanged(Color.GRAY, "Gris");
+    }//GEN-LAST:event_btnColorGrayActionPerformed
+
+    private void btnColorPinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorPinkActionPerformed
+        notifyColorChanged(Color.PINK, "Rosa");
+    }//GEN-LAST:event_btnColorPinkActionPerformed
+
+    private void btnColorOrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorOrangeActionPerformed
+        notifyColorChanged(Color.ORANGE, "Naranja");
+    }//GEN-LAST:event_btnColorOrangeActionPerformed
+
+    private void btnColorYellowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorYellowActionPerformed
+        notifyColorChanged(Color.YELLOW, "Amarillo");
+    }//GEN-LAST:event_btnColorYellowActionPerformed
+
+    private void btnColorGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorGreenActionPerformed
+        notifyColorChanged(Color.GREEN, "Verde");
+    }//GEN-LAST:event_btnColorGreenActionPerformed
+
+    private void btnColorMagentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColorMagentaActionPerformed
+        notifyColorChanged(Color.MAGENTA, "Magenta");
+    }//GEN-LAST:event_btnColorMagentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,15 +489,58 @@ public class PaintToolboxFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCirculo;
     private javax.swing.JButton btnColorAzul;
+    private javax.swing.JButton btnColorCyan;
+    private javax.swing.JButton btnColorDarkGrey;
+    private javax.swing.JButton btnColorGray;
+    private javax.swing.JButton btnColorGreen;
+    private javax.swing.JButton btnColorMagenta;
     private javax.swing.JButton btnColorNegro;
+    private javax.swing.JButton btnColorOrange;
+    private javax.swing.JButton btnColorPink;
     private javax.swing.JButton btnColorRojo;
+    private javax.swing.JButton btnColorWhite;
+    private javax.swing.JButton btnColorYellow;
     private javax.swing.JButton btnLibre;
     private javax.swing.JButton btnRecta;
     private javax.swing.JButton btnRectangulo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSlider jSliCambiarTexto;
     private javax.swing.JLabel labelCcolor;
     private javax.swing.JLabel lblSize;
     private javax.swing.JLabel lblTool;
+    private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
-}
 
+    @Override
+    public void colorChanged(ColorChangedEvent e) {
+        System.out.println("Cambio de color del trazo a " + e.getColorName());
+        paintPanel.setColorActual(e.getColor());
+    }
+    
+    @Override
+    public void trazoChanged(TrazoChangedEvent e) {
+        System.out.println("Cambio de trazo a " +  e.getTrazo());
+        paintPanel.setSizeActual(e.getTrazo());
+    }
+
+    @Override
+    public void modoChanged(ModoChangedEvent e) {
+        paintPanel.setModo(e.getModo());
+        switch(paintPanel.getModo()) {
+            case 1: 
+                System.out.println("Cambio a modo libre.");
+                break;
+            case 2:
+                System.out.println("Cambio a modo linea.");
+                break;
+            case 3:
+                System.out.println("Cambio a modo circulo.");
+                break;
+            case 4:
+                System.out.println("Cambio a modo cuadrado.");
+                break;
+        }
+    }
+
+}

@@ -109,7 +109,7 @@ public class PaintPanel extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            // System.out.printf("CLICK @ %d, %d\n", e.getX(), e.getY());
+             System.out.printf("CLICK @ %d, %d\n", e.getX(), e.getY());
             if (modo == MODO_LIBRE) {
                 TrazoPencil trazo = new TrazoPencil(e.getPoint(), getColorActual(), getSizeActual());
                 trazosPencil.add(trazo);

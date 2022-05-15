@@ -19,11 +19,11 @@ public class App {
         new MainForm().setVisible(false);
         PaintFrame paintFrame = new PaintFrame();
         PaintToolboxFrame paintToolboxFrame = new PaintToolboxFrame();
-        paintFrame.setLocation(paintToolboxFrame.getWidth(), 0);
-        paintFrame.setVisible(true);
-        paintToolboxFrame.addToolsListener(paintFrame);
+        //paintFrame.setLocation(paintToolboxFrame.getWidth(), 0);
+        paintFrame.setVisible(false);
+        paintToolboxFrame.addToolsListener(paintToolboxFrame);
         paintToolboxFrame.addToolsListener(
-                paintFrame.getPaintPanel().getToolsListener());
+                paintToolboxFrame.getPaintPanel().getToolsListener());
         ToolsListener eventosTools = new ToolsListener() {
             @Override
             public void colorChanged(ColorChangedEvent e) {

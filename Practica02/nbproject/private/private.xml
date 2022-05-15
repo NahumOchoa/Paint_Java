@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/MainForm.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/PaintFrame.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/App.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/TrazoChangedEvent.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/ReceptorMensajesFrame.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/PaintPanel.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/MensajeEvent.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/TrazoRect.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/PaintToolboxFrame.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/ToolsListener.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/MensajeListener.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/TrazoCirculo.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/TrazoLinea.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/ModoChangedEvent.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/ColorChangedEvent.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/TrazoPencil.java</file>
-            <file>file:/D:/videos/Practica02/src/edu/upv/poo/SubjectFrame.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
