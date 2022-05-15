@@ -125,7 +125,7 @@ public class PaintToolboxFrame extends javax.swing.JFrame implements ToolsListen
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        labelCcolor.setText("Color:");
+        labelCcolor.setText("Selecciona un color");
 
         lblSize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSize.setText("Tamaño actual del trazo: 20");
