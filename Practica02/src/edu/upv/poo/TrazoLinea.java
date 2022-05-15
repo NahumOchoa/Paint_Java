@@ -37,8 +37,11 @@ public class TrazoLinea {
     * Metodo hecho para el dibujo de la recta
     */  
     public void dibujarLinea(Graphics2D g) {
+        Graphics2D g1 = g;
         g.setColor(color);
         g.setStroke(new BasicStroke(getSize()));
         g.drawLine(x1, y1, x2, y2);
+        
+        
     }
 }

@@ -1,6 +1,6 @@
 package edu.upv.poo;
 /**
- * Esta clase representa la clase principal de el programa
+ * Esta clase representa la clase principal de el programa que tiene como objetivo emular un paint
  * 
  * @author nahum
  */
@@ -16,7 +16,6 @@ public class App {
     }
     
     public void run() {
-        new MainForm().setVisible(false);
         PaintFrame paintFrame = new PaintFrame();
         PaintToolboxFrame paintToolboxFrame = new PaintToolboxFrame();
         //paintFrame.setLocation(paintToolboxFrame.getWidth(), 0);
@@ -55,20 +54,8 @@ public class App {
         });
         paintToolboxFrame.setVisible(true);
         
-        SubjectFrame subjectFrame = new SubjectFrame();
-        MensajeListener mensajeListener = e -> System.out.println(
-                    "Mensaje recibido en clase app. => " + e.getMensaje());
-        subjectFrame.addMensajeListener(mensajeListener);
         
-        subjectFrame.addMensajeListener(this::recibirMensajeDesdeSubjectFrame);
-        MensajeListener mensajeListenerFunc = e -> System.out.println(
-                "mensajeListenerFunc =>" + e.getMensaje());
-        subjectFrame.addMensajeListener(mensajeListenerFunc);
-        subjectFrame.setVisible(false);
     }
     
-    private void recibirMensajeDesdeSubjectFrame(MensajeEvent e) {
-        System.out.println(
-                "recibirMensajeDesdeSubjectFrame() => " + e.getMensaje());
-    }
+    
 }

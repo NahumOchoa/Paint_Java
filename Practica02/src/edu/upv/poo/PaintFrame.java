@@ -21,6 +21,7 @@ public class PaintFrame extends JFrame implements ToolsListener {
         add(paintPanel, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(900, 720);
+        
     }
     
     public PaintPanel getPaintPanel() { return paintPanel; }
@@ -40,7 +41,7 @@ public class PaintFrame extends JFrame implements ToolsListener {
         System.out.println("Cambio de trazo a " +  e.getTrazo());
         paintPanel.setSizeActual(e.getTrazo());
     }
-
+    //Cambia el modo de herramientas
     @Override
     public void modoChanged(ModoChangedEvent e) {
         paintPanel.setModo(e.getModo());
@@ -56,6 +57,9 @@ public class PaintFrame extends JFrame implements ToolsListener {
                 break;
             case 4:
                 System.out.println("Cambio a modo cuadrado.");
+                break;
+            case 5:
+                System.out.println("Cambio a modo triangulo.");
                 break;
         }
     }

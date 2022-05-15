@@ -9,19 +9,17 @@ import java.util.ArrayList;
  * @author nahum
  */
 public class PaintPanel extends JPanel {
-
+    //Todos los trazos guardados en el panel
     private final ToolsEvents toolsEvents = new ToolsEvents();
-
     private final ArrayList<TrazoPencil> trazosPencil = new ArrayList<>();
-
     private final ArrayList<TrazoLinea> trazosLinea = new ArrayList<>();
     private final ArrayList<TrazoLinea> trazosLineaFinal = new ArrayList<>();
-
     private final ArrayList<TrazoCirculo> trazosCirculo = new ArrayList<>();
     private final ArrayList<TrazoCirculo> trazosCirculoFinal = new ArrayList<>();
     private final ArrayList<TrazoRect> trazosRectangulo = new ArrayList<>();
     private final ArrayList<TrazoRect> trazosRectanguloFinal = new ArrayList<>();
-
+    private final ArrayList<TrazoTriangulo> trazosTriangulo= new ArrayList<>();
+    private final ArrayList<TrazoTriangulo> trazosTrianguloFinal = new ArrayList<>();
     private final ArrayList<MouseEvent> clicks = new ArrayList<>();
     
     private TrazoLinea lineAux;
@@ -29,11 +27,13 @@ public class PaintPanel extends JPanel {
     private Color colorActual = Color.BLACK;
     private int sizeActual = 20;
     private float [] colorAux = null;
-
+    //Los diferentes modos de dibujo
     private final int MODO_LIBRE = 1;
     private final int MODO_LINEA = 2;
     private final int MODO_CIRCULO = 3;
     private final int MODO_RECTANGULO = 4;
+    private final int MODO_TRIANGULO = 5;
+    
     private int modo = MODO_LIBRE;
 
     public PaintPanel() {
@@ -78,11 +78,9 @@ public class PaintPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         draw(g2);
     }
-
+    //Metodo que permite proyectar los dibujos constatemente
     private void draw(Graphics2D g) {
-        trazosPencil.forEach(t -> {
-            t.draw(g);
-        });
+       
         trazosLineaFinal.forEach(t -> {
             t.dibujarLinea(g);
         });
@@ -103,10 +101,23 @@ public class PaintPanel extends JPanel {
             t.dibujarRectangulo(g);
         });
         
+        trazosTrianguloFinal.forEach(t -> {
+            t.dibujarTriangulo(g);
+        });
+
+        trazosTriangulo.forEach(t -> {
+            t.dibujarTriangulo(g);
+        });
+        
+        trazosPencil.forEach(t -> {
+            t.draw(g);
+        });
+        
+        
+        
     }
-
+    
     class PaintPanelMouseEvents implements MouseListener, MouseMotionListener {
-
         @Override
         public void mouseClicked(MouseEvent e) {
              System.out.printf("CLICK @ %d, %d\n", e.getX(), e.getY());
@@ -117,10 +128,10 @@ public class PaintPanel extends JPanel {
             }
 
         }
-
+        //Evento de mouse precionado
         @Override
         public void mousePressed(MouseEvent e) {
-            // System.out.printf("PRESSED @ %d, %d\n", e.getX(), e.getY());
+            
             switch (modo) {
                 case MODO_LIBRE:
                     TrazoPencil trazo = new TrazoPencil(e.getPoint(), getColorActual(), getSizeActual());
@@ -135,9 +146,13 @@ public class PaintPanel extends JPanel {
                 case MODO_RECTANGULO:
                     clicks.add(0, e);
                     break;
+                case MODO_TRIANGULO:
+                    clicks.add(0, e);
+                    break;
+                    
             }
         }
-
+        //Metodo que crea el dibujo final
         @Override
         public void mouseReleased(MouseEvent e) {
             // System.out.printf("RELEASED @ %d, %d\n", e.getX(), e.getY());
@@ -162,6 +177,11 @@ public class PaintPanel extends JPanel {
                     TrazoRect rectangulo = new TrazoRect(clicks, colorActual,getSizeActual());
                     trazosRectanguloFinal.add(rectangulo);
                     break;
+                case MODO_TRIANGULO:
+                    clicks.add(1,e);
+                    TrazoTriangulo triangulo = new TrazoTriangulo(clicks,colorActual,getSizeActual());
+                    trazosTrianguloFinal.add(triangulo);
+                    break;
             }
             repaint();
         }
@@ -175,7 +195,7 @@ public class PaintPanel extends JPanel {
         public void mouseExited(MouseEvent e) {
             // System.out.printf("EXIT @ %d, %d\n", e.getX(), e.getY());
         }
-
+        //Metodo que permite ver una previsualizacion de trazo antes de crearlo
         @Override
         public void mouseDragged(MouseEvent e) {
             switch (modo) {
@@ -229,6 +249,22 @@ public class PaintPanel extends JPanel {
                     try {
                         int rectanguloAnterior = trazosRectangulo.size() - 3;
                         trazosRectangulo.remove(rectanguloAnterior);
+                        repaint();
+                    } catch (IndexOutOfBoundsException ex) {
+                        return;
+                    }
+                    break;
+                    
+                case MODO_TRIANGULO:
+                    clicks.add(1, e);
+                    TrazoTriangulo triangulo = new TrazoTriangulo(clicks, new Color(getColorActual().getRed()
+                            ,getColorActual().getGreen()
+                            ,getColorActual().getBlue(),60) 
+                            ,getSizeActual());
+                    trazosTriangulo.add(triangulo);
+                    try {
+                        int trianguloAnterior = trazosTriangulo.size() - 3;
+                        trazosTriangulo.remove(trianguloAnterior);
                         repaint();
                     } catch (IndexOutOfBoundsException ex) {
                         return;
